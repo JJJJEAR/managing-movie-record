@@ -81,47 +81,6 @@ app.get('/api/db/read', async (req, res) => {
   }
 });
 
-app.get('/api/db/paginate', (request, response) => {
-  let options = {
-    page: request.query.page || 1,
-    limit: 2,
-  };
-
-  Movie.paginate({}, options)
-    .then(result => {
-      response.json(result);
-    })
-    .catch(err => {
-      console.error(err);
-      response.status(500).json({ error: err });
-    });
-});
-
-app.get('/api/db/search', (request, response) => {
-  let q = request.query.q || '';
-  let pattern = new RegExp(q, 'ig');
-  let conditions = {
-    $or: [
-      { name: { $regex: pattern, $options: 'i' } },
-      { detail: { $regex: pattern, $options: 'i' } }
-    ]
-  };
-
-  let options = {
-    page: request.query.page || 1,
-    limit: 2,
-  };
-
-  Movie.paginate(conditions, options)
-    .then(result => {
-      response.json(result);
-    })
-    .catch(err => {
-      console.error(err);
-      response.status(500).json({ error: err });
-    });
-});
-
 app.listen(PORT, () => {
   console.log('Server listening on port ' + PORT);
 });
