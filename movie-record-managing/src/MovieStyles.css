@@ -1,0 +1,43 @@
+.container {
+  text-align: center;
+  margin: 20px;
+
+}
+
+.heading {
+  font-size: 50px;
+}
+
+.movieBoxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movieBox {
+  width: calc(20% - 20px); 
+  border: 1px solid #3498db;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.movieName {
+  font-weight: bold;
+}
+
+.movieRating {
+  color: #e74c3c; 
+}
+
+.movieCount {
+  margin-top: 20px;
+  color: #3498db;
+  font-size: 18px;
+}
