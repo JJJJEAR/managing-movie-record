@@ -1,5 +1,5 @@
-import DBNav from './db-nav'
+import CRUD from './db-nav'
 
 export default function App(){
-  return <DBNav/>
+  return <CRUD/>
 }
