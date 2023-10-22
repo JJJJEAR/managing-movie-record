@@ -1,4 +1,5 @@
 import React from 'react';
+import './MovieStyles.css';
 
 export default function Movie() {
   const [movies, setMovies] = React.useState([]);
@@ -20,23 +21,29 @@ export default function Movie() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>; // You can replace this with a loading spinner
+    return <div className="loading">Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="error">Error: {error}</div>;
   }
 
   return (
-    <div>
-      <h1 style={{textAlign:'center'}}>Movies List</h1>
-      <ul>
-        {movies.map(movie => (
-          <li key={movie._id}>
-            {movie.movie_title} - Year: {movie.YearRL}, Rating: {movie.Rate}
-          </li>
+    <div className="container">
+      <h1 className="heading">Movies List</h1>
+      <div className="movieBoxes">
+        {movies.map((movie, index) => (
+          <div key={movie._id} className="movieBox">
+            <div className="topBar">
+              <span className="movieName">{movie.movie_title}</span>
+              <span className="movieRating">Rating : {movie.Rate}</span>
+            </div>
+            <p>Movie Title : {movie.movie_title}</p>
+            <p>Year Release : {movie.YearRL}, Rating of Movie : {movie.Rate}</p>
+          </div>
         ))}
-      </ul>
+      </div>
+      <p className="movieCount">Total Movies: {movies.length}</p>
     </div>
   );
 }
