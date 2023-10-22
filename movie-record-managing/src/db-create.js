@@ -8,10 +8,6 @@ export default function DBCreate() {
 		event.preventDefault()
 
 		const fd = new FormData(form.current)
-		// const imageInput = document.querySelector('input[name="img"]');
-		// const imageFile = imageInput.files[0];
-		// alert(JSON.stringify(imageInput))
-		// fd.append('image', imageFile);
 		const fe = Object.fromEntries(fd.entries())
 
 		fetch('/api/db/create', {
