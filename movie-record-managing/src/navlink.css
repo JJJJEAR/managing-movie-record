@@ -1,0 +1,28 @@
+.nav {
+    background-color: #3498db;
+    padding: 10px;
+    text-align: center;
+    margin: 15px;
+  }
+  
+  .menu {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .menu:hover {
+    background-color: #2980b9;
+    color: #fff;
+  }
+  
+  .active_menu {
+    color: #e74c3c;
+    background-color: #ecf0f1;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+  }

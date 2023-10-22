@@ -1,11 +1,12 @@
-import Home from './Home'
-import CRUD from './db-nav'
+import React from "react";
+import MovieNavigation from "./MovieNavigation";
 
-export default function App(){
+function App() {
   return (
-  <>
-  <CRUD/>
-
-  </>
-  )
+    <>
+    <MovieNavigation/>
+    </>
+  );
 }
+
+export default App;
