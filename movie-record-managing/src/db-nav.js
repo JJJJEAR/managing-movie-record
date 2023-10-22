@@ -4,7 +4,7 @@ import DBRead from './db-read'
 import DBUpdate from './db-update'
 import DBDelete from './db-delete'
 
-export default function DBNav() {
+export default function CRUD() {
     const path = window.location.pathname
     switch (path) {
         case '/db': 
