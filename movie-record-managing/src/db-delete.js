@@ -1,60 +1,22 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import './table-style.css'
 
-export default function DBUpdate() {
+export default function DBDelete() {
     let [data, setData] = React.useState('')
-	const form = React.useRef()
+    const form = React.useRef()
 
-    React.useEffect(() => {	
-		fetch('/api/db/read')
-		.then(response => response.json())
-		.then(result => {       
-            if (result.length > 0) {
-                showData(result)
-            } else {
-                setData(<>ไม่มีรายการข้อมูล</>)
-            }   
-		})
-        .catch(err => alert(err))
-    }, [])  
-
-    const showData = (result) => {
-        let r = (
-        <form onSubmit={onSubmitForm} ref={form}>
-        <table>
-        <tr>
-            <th>ลบ</th><th class="thLeft">ชื่อสินค้า</th><th>ราคา</th>
-            <th>วันที่เพิ่มสินค้า</th><th class="thLeft">รายละเอียด</th>
-        </tr>
-        {
-        result.map(doc => {
-            let dt = new Date(Date.parse(doc.date_added))
-            let dmy = (
-                <>{dt.getDate()}-{dt.getMonth()+1}-{dt.getFullYear()}</>
-            )
-            let p = new Intl.NumberFormat().format(doc.price)
-            return (
-            <tr>
-                <td class="tdCenter">
-                    <input type="radio" name="_id" value={doc._id}/>
-                </td>
-                <td>{doc.name}</td>
-                <td class="tdCenter">{p}</td>
-                <td class="tdCenter">{dmy}</td>
-                <td>{doc.detail}</td>
-            </tr>
-            )
-        })
-        }
-        </table>
-        <br/>
-        <button>ลบรายการที่เลือก</button>
-        </form>
-        )
-    
-        setData(r)
-    }
+    React.useEffect(() => {
+        fetch('/api/db/read')
+            .then(response => response.json())
+            .then(result => {
+                if (result.length > 0) {
+                    showData(result)
+                } else {
+                    setData(<>ไม่มีรายการข้อมูล</>)
+                }
+            })
+            .catch(err => alert(err))
+    }, [])
 
     const onSubmitForm = (event) => {
         event.preventDefault()
@@ -73,28 +35,63 @@ export default function DBUpdate() {
         fetch('/api/db/delete', {
             method: 'POST',
             body: JSON.stringify(fe),
-            headers: {'Content-Type':'application/json'}
+            headers: { 'Content-Type': 'application/json' }
         })
-        .then(response => response.json())
-        .then(result => {
-            if (result.error) {
-                alert(result.error)
-            } else {
-                if (result.length === 0) {
-                    setData('ไม่มีรายการข้อมูล')
+            .then(response => response.json())
+            .then(result => {
+                if (result.error) {
+                    alert(result.error)
                 } else {
-                    showData(result)                  
+                    if (result.length === 0) {
+                        setData('ไม่มีรายการข้อมูล')
+                    } else {
+                        showData(result)
+                    }
+                    alert('ข้อมูลถูกลบแล้ว')
                 }
-                alert('ข้อมูลถูกลบแล้ว')   
-            }
-        })
-        .catch(err => alert(err))
+            })
+            .catch(err => alert(err))
+    }
+
+    const showData = (result) => {
+        let r = (
+            <form onSubmit={onSubmitForm} ref={form}>
+            <table>
+                <thead>
+                    <tr >
+                        <th>DELETE</th><th class="thLeft">Movie Title</th>
+                        <th>Year Release</th><th class="thLeft">Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {
+                result.map(doc => {
+                    return (
+                        <tr key={doc._id}>
+                             <td class="tdCenter">
+                                <input type="radio" name="_id" value={doc._id} />
+                            </td>
+                            <td>{doc.movie_title}</td>
+                            <td className="tdCenter">{doc.YearRL}</td>
+                            <td>{doc.Rate}</td>
+                        </tr>
+                    )
+                })
+                }
+                </tbody>
+            </table>
+                <br />
+                <button>ลบรายการที่เลือก</button>
+            </form>
+        )
+
+        setData(r)
     }
 
     return (
-        <div style={{margin:'20px'}}>
+        <div style={{ margin: '20px' }}>
             <div id="data">{data}</div>
-            <br/>
+            <br />
             <a href="/db">หน้าหลัก</a>
         </div>
     )

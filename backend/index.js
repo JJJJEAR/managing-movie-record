@@ -1,38 +1,23 @@
 const express = require('express');
 const app = express();
 const Movie = require('./model');
-// const multer = require('multer');
 const PORT = 8000;
-
-// const storage = multer.memoryStorage();
-// const upload = multer({ storage: storage });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.post('/api/db/create',async (req, res) => {
-
+app.post('/api/db/create', async (req, res) => {
   try {
     const { name, year, rate } = req.body;
-    // const img = req.file.buffer;
     console.log(JSON.stringify(req.body))
     const newMovie = new Movie({
       movie_title: name,
       YearRL: year,
       Rate: rate,
     });
-    // const { name, img ,year, rate } = req.body;
-    
-    // console.log(req)
-    // const newMovie = new Movie({
-    //   movie_title: name,
-    //   picture: img,
-    //   YearRL: year,
-    //   Rate: rate
-    // });
 
     await newMovie.save()
-      .then(() => {   
+      .then(() => {
         res.json({ success: true, message: 'Movie added successfully' });
       })
       .catch(() => {
@@ -49,7 +34,6 @@ app.post('/api/db/update', (request, response) => {
   let form = request.body;
   let data = {
     movie_title: form.name || '',
-    picture: form.img.buffer,
     YearRL: form.year || 0,
     Rate: form.rate || ''
 
@@ -86,13 +70,16 @@ app.post('/api/db/delete', (request, response) => {
     });
 });
 
-app.get('/api/db/read', (request, response) => {
-  Movie
-    .find({})
-    .exec()
-    .then(docs => response.json(docs))
-    .catch(err => console.log(err))
-})
+app.get('/api/db/read', async (req, res) => {
+  try {
+    const movies = await Movie.find({});
+    console.log(JSON.stringify(movies));
+    res.json(movies);
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 app.get('/api/db/paginate', (request, response) => {
   let options = {
