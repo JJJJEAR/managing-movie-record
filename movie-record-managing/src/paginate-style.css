@@ -1,0 +1,17 @@
+
+a.page, span.page-active {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+a.page {
+    border: solid 1px gray;
+    padding: 2px 5px;
+    background-color: #def;
+    color: blue;
+}
+
+a.page:hover {
+    background-color: aqua;
+}

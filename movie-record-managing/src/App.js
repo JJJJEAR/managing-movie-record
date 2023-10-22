@@ -1,14 +1,5 @@
-import React from 'react';
-import MovieList from './MovieLists';
+import DBNav from './db-nav'
 
-function App() {
-  return (
-    <>
-      <div>
-        <MovieList/>
-      </div>
-    </>
-  );
+export default function App(){
+  return <DBNav/>
 }
-
-export default App;

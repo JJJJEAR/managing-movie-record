@@ -1,0 +1,19 @@
+#form-create {
+    margin: 20px;
+}
+
+#form-create > label {
+    display: inline-block;
+    width: 150px;
+    margin-bottom: 15px;
+    margin-right: 5px;
+    text-align: right;
+}
+
+#form-create > textarea {
+    margin-bottom: 10px;
+}
+
+#form-create > button, #form-create > a {
+    margin-left: 160px;
+}

@@ -1,0 +1,44 @@
+#data table {
+    border-collapse: collapse;
+}
+
+#data table tr:nth-child(even) {
+    background-color:#def;
+}
+
+#data table th {
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+}
+
+#data table td {
+    padding: 10px 5px;
+}
+
+#data table .tdCenter {
+    text-align: center;
+}
+
+#data table .thLeft {
+    text-align: left;
+}
+
+#data input[type=number] {
+    width: 100px;
+}
+
+#data table caption {
+    margin-bottom: 10px;
+    text-align: left;
+    caption-side: top !important;
+}
+
+#data table caption > div {
+    display: inline-block;
+}
+
+#data table caption > form {
+    float: right;
+}
+
