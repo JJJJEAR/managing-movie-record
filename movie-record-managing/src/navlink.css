@@ -1,28 +1,47 @@
 .nav {
-    background-color: #3498db;
-    padding: 10px;
-    text-align: center;
-    margin: 15px;
-  }
-  
-  .menu {
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 15px;
-    margin: 0 5px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .menu:hover {
-    background-color: #2980b9;
-    color: #fff;
-  }
-  
-  .active_menu {
-    color: #e74c3c;
-    background-color: #ecf0f1;
-    text-decoration: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-  }
+  background-color: #3498db;
+  padding: 25px;
+  text-align: left;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100px;
+  z-index: 1000;
+}
+
+.menu {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu:hover {
+  background-color: #2980b9;
+  color: #fff;
+}
+
+.active_menu {
+  display: block;
+  color: #8942ca;
+  background-color: #ecf0f1;
+  padding: 8px 15px; 
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+
+}
+
+.content {
+  margin-left: 100px; 
+  padding: 16px;
+}
+
+
+
+
