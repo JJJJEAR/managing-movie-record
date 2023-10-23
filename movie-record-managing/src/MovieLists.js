@@ -3,8 +3,6 @@ import './MovieStyles.css';
 
 export default function Movie() {
   const [movies, setMovies] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
     fetch('/api/db/read')
@@ -13,20 +11,9 @@ export default function Movie() {
         setMovies(result);
       })
       .catch(err => {
-        setError(err.message || 'An error occurred while fetching data.');
-      })
-      .finally(() => {
-        setLoading(false);
+        alert(err.message || 'An error occurred while fetching data.');
       });
   }, []);
-
-  if (loading) {
-    return <div className="loading">Loading...</div>;
-  }
-
-  if (error) {
-    return <div className="error">Error: {error}</div>;
-  }
 
   return (
     <div className="container">
