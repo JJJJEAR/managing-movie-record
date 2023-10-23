@@ -5,8 +5,8 @@ import Session from "./session";
 function App() {
   return (
     <>
-    {/* <MovieNavigation/> */}
-    <Session/>
+    <MovieNavigation/>
+    {/* <Session/> */}
     </>
   );
 }
