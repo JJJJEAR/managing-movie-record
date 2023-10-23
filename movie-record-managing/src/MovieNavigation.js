@@ -9,6 +9,7 @@ import DBDelete from "./db-delete";
 import "./navlink.css";
 
 export default function MovieNavigation() {
+    
     return (
         <BrowserRouter>
             <nav className="nav">
@@ -43,5 +44,6 @@ export default function MovieNavigation() {
                 {/* <Route path="/Login" element={<Session/>} /> */}
             </Routes>
         </BrowserRouter>
+
     );
 }
