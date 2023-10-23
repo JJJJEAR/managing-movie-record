@@ -5,18 +5,16 @@ import MovieLists from "./MovieLists";
 import DBUpdate from "./db-update";
 import DBRead from "./db-read";
 import DBDelete from "./db-delete";
+// import Session from "./session";
 import "./navlink.css";
 
 export default function MovieNavigation() {
     return (
         <BrowserRouter>
             <nav className="nav">
-                <NavLink to="/" className={({ isActive }) => isActive ? "active_menu" : "menu" }
-                style={({ isActive }) => {
-                    return {
-                        fontWeight: isActive ? "bold" : "",
-                    };
-                }}>Movie</NavLink>&nbsp;
+                <NavLink to="/" className={({ isActive }) => isActive ? "active_menu" : "menu" } >
+                    Movie
+                </NavLink>&nbsp;
                 <NavLink to="/Create" className={({ isActive }) => isActive ? "active_menu" : "menu" } >
                     Create
                 </NavLink>&nbsp;
@@ -29,6 +27,9 @@ export default function MovieNavigation() {
                 <NavLink to="/Delete" className={({ isActive }) => isActive ? "active_menu" : "menu" } >
                     Delete
                 </NavLink>
+                {/* <NavLink to="/Login" className={({ isActive }) => isActive ? "active_menu" : "menu" } >
+                    Login
+                </NavLink> */}
             </nav>
 
             <Routes style={{ margin: "50px" }}>
@@ -39,6 +40,7 @@ export default function MovieNavigation() {
                 <Route path="/Update" element={<DBUpdate />} />
                 <Route path="/Delete" element={<DBDelete />} />
                 <Route path="*" element={<Navigate to="/" />} />
+                {/* <Route path="/Login" element={<Session/>} /> */}
             </Routes>
         </BrowserRouter>
     );

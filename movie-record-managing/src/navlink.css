@@ -1,13 +1,14 @@
 .nav {
   background-color: #3498db;
-  padding: 25px;
-  text-align: left;
+  padding: 5px;
+  text-align: center;
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100px;
-  z-index: 1000;
+  margin: auto;
+  
 }
 
 .menu {
@@ -15,9 +16,11 @@
   color: #fff;
   text-decoration: none;
   padding: 10px 20px;
-  margin: 10px;
+  margin: auto;
+  text-align: center;
   border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 10px;
 }
 
 .menu:hover {
@@ -29,18 +32,20 @@
   display: block;
   color: #8942ca;
   background-color: #ecf0f1;
-  padding: 8px 15px; 
+  padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
+  margin: auto;
   text-align: center;
   font-weight: bold;
-
+  margin-top: 10px;
 }
 
 .content {
   margin-left: 100px; 
   padding: 16px;
 }
+
 
 
 
