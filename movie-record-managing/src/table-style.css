@@ -4,6 +4,10 @@ table {
     margin: auto;
 }
 
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
 table th, table td {
     border: 1px solid #ddd;
     padding: 10px;
@@ -49,3 +53,17 @@ table button:hover {
     background-color: #45a049;
 }
 
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}

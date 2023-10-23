@@ -81,7 +81,8 @@ export default function DBDelete() {
                 </tbody>
             </table>
                 <br />
-                <button>ลบรายการที่เลือก</button>
+                <div style={{textAlign:'center'}}><button>ลบรายการที่เลือก</button></div>
+                
             </form>
         )
 
