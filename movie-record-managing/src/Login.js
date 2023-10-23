@@ -19,8 +19,13 @@ export default function Login() {
         })
             .then((response) => response.json())
             .then((result) => {
-                form.current.reset();
-                alert('Login successful');
+                if (result.success) {
+                    form.current.reset();
+                    alert(result.message);
+                    window.location.href = result.redirectTo;
+                } else {
+                    alert(result.error);
+                }
             })
             .catch((err) => alert('Login failed',));
     };
