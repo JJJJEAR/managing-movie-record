@@ -15,18 +15,19 @@ const bcrypt = require('bcrypt');
 
 app.post('/api/db/register', async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
+    console.log('Received data:', username, password, role);
     const existingUser = await User.findOne({ username });
     console.log(JSON.stringify(req.body))
     if (existingUser) {
       return res.status(400).json({ success: false, error: 'Username already taken' });
     }
-    const salt = await bcrypt.genSalt(10);
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
-      username:String,
+      username,
       password: hashedPassword,
-      role:String
+      role
     });
 
     await newUser.save();
@@ -42,10 +43,10 @@ app.post('/api/db/login', async (req, res) => {
     const { username, password } = req.body;
 
     const user = await User.findOne({ username });
+    console.log(user)
 
     if (user) {
       const match = await bcrypt.compare(password, user.password);
-
       if (match) {
         req.session.userId = user._id;
         res.redirect('/');
