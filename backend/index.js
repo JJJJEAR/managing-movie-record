@@ -83,44 +83,45 @@ app.get('/api/db/read', async (req, res) => {
 });
 
 //Session
-const session = require('express-session');
-app.use(session({ 
-    secret: 'reactrestapi',
-    resave: false,
-    saveUninitialized: false
-}));
+// const session = require('express-session');
 
-app.get('/api/session/get', (request, response) => {
-  let signedIn = request.session.email ? true : false;
-  response.json({ signedIn });
-})
+// app.use(session({ 
+//     secret: 'reactrestapi',
+//     resave: false,
+//     saveUninitialized: false,
+// }));
 
-app.post('/api/session/set', (request, response) => {
-  let email = request.body.email || ''
-  let password = request.body.pswd || ''
-  if (password === '12345') {
-    request.session.email = email
-    response.json({ signedIn: true })
-  } else {
-    response.json({ signedIn: false })
-  }
-})
+// app.get('/api/session/get', (request, response) => {
+//   let signedIn = request.session.email ? true : false;
+//   response.json({ signedIn });
+// })
 
-app.get('/api/session/del', (req, res) => {
-  if (req.session) {
-    req.session.destroy((err) => {
-      if (err) {
-        console.error('Session destroy error:', err);
-      } else {
-        console.log('Session destroyed successfully.');
-      }
-      res.json({ signedIn: false });
-    });
-  } else {
-    console.log('No session to destroy.');
-    res.json({ signedIn: false });
-  }
-});
+// app.post('/api/session/set', (request, response) => {
+//   let email = request.body.email || ''
+//   let password = request.body.pswd || ''
+//   if (password === '12345') {
+//     request.session.email = email
+//     response.json({ signedIn: true })
+//   } else {
+//     response.json({ signedIn: false })
+//   }
+// })
+
+// app.get('/api/session/del', (req, res) => {
+//   if (req.session) {
+//     req.session.destroy((err) => {
+//       if (err) {
+//         console.error('Session destroy error:', err);
+//       } else {
+//         console.log('Session destroyed successfully.');
+//       }
+//       res.json({ signedIn: false });
+//     });
+//   } else {
+//     console.log('No session to destroy.');
+//     res.json({ signedIn: false });
+//   }
+// });
 
 app.listen(PORT, () => {
   console.log('Server listening on port ' + PORT);
