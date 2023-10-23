@@ -3,16 +3,21 @@ const app = express();
 const Movie = require('./model');
 const User = require('./model2');
 const flash = require('connect-flash')
+const session = require('express-session')
+const bcrypt = require('bcrypt');
 const PORT = 8000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(flash())
 
-//DatabaseLogin
-const expressSession = require('express-session')
-const bcrypt = require('bcrypt');
+app.use(session({
+  secret: 'Movie-Test', // ค่านี้ควรจะเปลี่ยนให้เป็นค่าที่ปลอดภัย
+  resave: false,
+  saveUninitialized: true,
+}));
 
+//DatabaseLogin
 app.post('/api/db/register', async (req, res) => {
   try {
     const { username, password, role } = req.body;
@@ -49,17 +54,28 @@ app.post('/api/db/login', async (req, res) => {
       const match = await bcrypt.compare(password, user.password);
       if (match) {
         req.session.userId = user._id;
-        res.redirect('/');
+        res.json({ success: true, message: 'Login successful' });
       } else {
-        res.redirect('/login');
+        res.status(401).json({ success: false, error: 'Invalid password' });
       }
     } else {
-      res.redirect('/login');
+      res.status(404).json({ success: false, error: 'User not found' });
     }
   } catch (error) {
     console.error('Error logging in:', error);
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
+});
+
+app.get('/api/db/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error logging out:', err);
+      res.status(500).json({ success: false, error: 'Internal Server Error', redirectTo: '/' });
+    } else {
+      res.json({ success: true, message: 'Logout successful' });
+    }
+  });
 });
 
 //DatabaseMovie
@@ -137,8 +153,6 @@ app.get('/api/db/read', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
-
 
 app.listen(PORT, () => {
   console.log('Server listening on port ' + PORT);
