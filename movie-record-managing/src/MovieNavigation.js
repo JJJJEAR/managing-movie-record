@@ -7,6 +7,7 @@ import DBRead from "./db-read";
 import DBDelete from "./db-delete";
 // import Session from "./session";
 import "./navlink.css";
+import Register from "./Register";
 
 export default function MovieNavigation() {
     
@@ -28,9 +29,9 @@ export default function MovieNavigation() {
                 <NavLink to="/Delete" className={({ isActive }) => isActive ? "active_menu" : "menu" } >
                     Delete
                 </NavLink>
-                {/* <NavLink to="/Login" className={({ isActive }) => isActive ? "active_menu" : "menu" } >
-                    Login
-                </NavLink> */}
+                <NavLink to="/Register" className={({ isActive }) => isActive ? "active_menu" : "menu" } >
+                    Register
+                </NavLink>
             </nav>
 
             <Routes style={{ margin: "50px" }}>
@@ -41,6 +42,7 @@ export default function MovieNavigation() {
                 <Route path="/Update" element={<DBUpdate />} />
                 <Route path="/Delete" element={<DBDelete />} />
                 <Route path="*" element={<Navigate to="/" />} />
+                <Route path="/Register" element={<Register/>} />
                 {/* <Route path="/Login" element={<Session/>} /> */}
             </Routes>
         </BrowserRouter>

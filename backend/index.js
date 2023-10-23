@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const Movie = require('./model');
 const User = require('./model2');
+const flash = require('connect-flash')
 const PORT = 8000;
 
 app.use(express.urlencoded({ extended: true }));
@@ -11,17 +12,16 @@ app.use(flash())
 //DatabaseLogin
 const expressSession = require('express-session')
 const bcrypt = require('bcrypt');
-const flash = require('connect-flash')
 
 app.post('/api/db/register', async (req, res) => {
   try {
     const { username, password } = req.body;
     const existingUser = await User.findOne({ username });
-   
+    console.log(JSON.stringify(req.body))
     if (existingUser) {
       return res.status(400).json({ success: false, error: 'Username already taken' });
     }
-
+    const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       username:String,
@@ -60,7 +60,6 @@ app.post('/api/db/login', async (req, res) => {
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 });
-
 
 //DatabaseMovie
 app.post('/api/db/create', async (req, res) => {
