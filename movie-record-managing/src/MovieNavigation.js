@@ -31,7 +31,7 @@ export default function MovieNavigation() {
                 </NavLink>
             </nav>
 
-            <Routes style={{ margin: "20px" }}>
+            <Routes style={{ margin: "50px" }}>
                 <Route path="/" element={<MovieLists/>} />
                 <Route path="/Movie" element={<MovieLists />} />
                 <Route path="/Create" element={<DBCreate />} />
