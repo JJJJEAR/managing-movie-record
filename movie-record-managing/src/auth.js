@@ -43,7 +43,7 @@ const Register = () => {
             </div><br/>
             <div>
                 <label style={{paddingRight:'10px'}}>Role:</label>
-                <select value={onSubmitForm} onChange={(e) => setRole(e.target.value)}>
+                <select value={role} onChange={(e) => setRole(e.target.value)}>
                 {roles.map((r) => (
                     <option key={r} value={r} >
                         {r}
