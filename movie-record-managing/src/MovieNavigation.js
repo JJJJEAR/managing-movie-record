@@ -50,14 +50,14 @@ export default function MovieNavigation() {
                     Register
                 </NavLink>&nbsp;
             </nav>
-            {((role === 'MANAGER' || role === 'TEAMLEADER' || role === 'FLOORSTAFF') && (
+            {(role === 'MANAGER' || role === 'TEAMLEADER' || role === 'FLOORSTAFF' ) && (
                 <div style={{ marginTop: 'auto' }}>
                     <NavLink to="/logout"  className={({ isActive }) => isActive ? "active_menu" : "menu"}
                     style={{ display: role ? 'flex' : 'none', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '8%' }}>
                         <button style={{ backgroundColor: 'red', padding: '10px 20px' }} onClick={(event) => Logout(event)}>Logout</button>
                     </NavLink>
                 </div>
-            ))}&nbsp;
+            )}&nbsp;
             
             <Routes style={{ margin: "20px" }}>
                 <Route path="/" element={<MovieLists />} />
