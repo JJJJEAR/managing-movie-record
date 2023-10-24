@@ -72,7 +72,7 @@ export default function DBUpdate() {
 
         fetch('/api/db/update', {
             method: 'POST',
-            body: JSON.stringify(fe),
+            body: JSON.stringify(fe , Rate),
             headers: { 'Content-Type': 'application/json' }
         })
             .then(response => response.json())
