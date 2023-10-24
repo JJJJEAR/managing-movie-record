@@ -23,10 +23,10 @@ const Register = () => {
             .then((result) => {
                 form.current.reset();
                 setRole('MANAGER');
-                alert('Registration successful');
+                alert('สมัครสมาชิกสำเร็จ');
                 window.location.href = result.redirectTo;
             })
-            .catch((err) => alert('Registration failed',));
+            .catch((err) => alert('สมัครสมาชิกไม่สำเร็จ',));
     }
 
     return (
@@ -112,6 +112,6 @@ const Logout = (event) => {
             alert('ออกจากระบบแล้ว');
             window.location.href = '/';
         })
-        .catch(err => alert('Logout failed:', err));
+        .catch(err => alert(err));
 };
 export { Login, Register , Logout };

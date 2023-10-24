@@ -28,7 +28,7 @@ export default function DBDelete() {
             return
         }
 
-        if (!window.confirm('ยืนยันการลบรายการนี้')) {
+        if (!window.confirm('ยืนยันการลบ')) {
             return
         }
 

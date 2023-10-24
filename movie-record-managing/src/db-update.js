@@ -48,14 +48,14 @@ export default function DBUpdate() {
                 }
                 
                 <tr style={{ backgroundColor: 'lightgray' }}>
-                        <td><button>update</button></td>
+                        <td><button>UPDATE</button></td>
                         <td><input type="text" name="name" ref={name} required /></td>
                         <td><input type="number" name="year" ref={year} min="1900" max="2100" required /></td>
                         <td><input type="text" name="Rate" ref={Rate} required /></td>
                     </tr>
                 </tbody>   
             </table>
-                <div style={{textAlign:'center'}}>เลือกรายการที่ต้องการแก้ไขแล้วใส่ข้อมูลใหม่ลงไป จากนั้นคลิกปุ่ม แก้ไข</div>
+                <div style={{textAlign:'center'}}>เลือกรายการที่ต้องการแก้ไขแล้วใส่ข้อมูลใหม่ลงไป จากนั้นคลิกปุ่ม Update</div>
             </form>
         )
 
