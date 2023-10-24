@@ -125,10 +125,11 @@ app.post('/api/db/create', async (req, res) => {
 
 app.post('/api/db/update', (request, response) => {
   let form = request.body;
+  console.log(JSON.stringify(request.body))
   let data = {
     movie_title: form.name || '',
     YearRL: form.year || 0,
-    Rate: form.rating
+    Rate: form.Rate
 
   };
 
