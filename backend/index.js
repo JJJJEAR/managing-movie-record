@@ -81,20 +81,20 @@ app.get('/api/db/getUserRole', (req, res) => {
     const userId = req.session.userId;
 
     if (!userId) {
-      return res.status(401).json({ role: 'User' }); 
+      return res.status(401).json({ role: 'null' }); 
     }
 
     User.findById(userId)
       .then(user => {
         if (!user) {
-          res.status(404).json({ role: 'User' }); 
+          res.status(404).json({ role: 'null' }); 
         } else {
           res.json({ role: user.role }); 
         }
       })
       .catch(err => {
         console.error('Error fetching user role:', err);
-        res.status(500).json({ role: 'User' }); 
+        res.status(500).json({ role: 'null' }); 
       });
 });
 
