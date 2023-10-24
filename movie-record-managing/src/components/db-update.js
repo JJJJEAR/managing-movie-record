@@ -1,5 +1,5 @@
 import React from 'react'
-import './css/table-style.css'
+import '../css/table-style.css'
 
 export default function DBUpdate() {
     let [data, setData] = React.useState('')

@@ -1,5 +1,5 @@
 import React from 'react'
-import './css/form-style.css'
+import '../css/form-style.css'
 
 export default function DBCreate() {
 	const form = React.useRef()

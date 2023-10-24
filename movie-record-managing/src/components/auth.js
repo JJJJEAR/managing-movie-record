@@ -1,5 +1,5 @@
 import React from 'react';
-import "./css/Loginstyle.css"
+import "../css/Loginstyle.css"
 
 const Register = () => {
     const form = React.useRef()
@@ -33,7 +33,7 @@ const Register = () => {
         <div id="login-container" class="container">
         <form id="form-register" onSubmit={onSubmitForm} ref={form} >
             <h2 style={{paddingBottom:'10px'}}>Register</h2>
-            <div>
+            <div style={{ paddingTop:'10px' }}> 
                 <label style={{paddingRight:'10px'}} >Username:</label>
                 <input type="text" name="username" required />
             </div><br/>
@@ -89,7 +89,7 @@ const Login = () => {
         <div id="login-container" class="container">
         <form id="form-login" onSubmit={onSubmitForm} ref={form}>
         <h2>Login</h2>
-            <div>
+            <div style={{ paddingTop:'10px' }}> 
                 <label style={{paddingRight:'10px'}}>Username:  </label>
                 <input type="text" name="username" required />
             </div><br/>
@@ -103,15 +103,4 @@ const Login = () => {
     );
 }
 
-const Logout = (event) => {
-
-    event.preventDefault();
-    fetch('/api/db/logout')
-        .then(response => response.text())
-        .then(result => {     
-            alert('ออกจากระบบแล้ว');
-            window.location.href = '/';
-        })
-        .catch(err => alert(err));
-};
-export { Login, Register , Logout };
+export { Login, Register };

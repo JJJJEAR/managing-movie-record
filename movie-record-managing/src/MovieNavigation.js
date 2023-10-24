@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, NavLink, Navigate, Routes, Route } from "react-router-dom";
-import DBCreate from "./db-create";
-import MovieLists from "./MovieLists";
-import DBUpdate from "./db-update";
-import DBRead from "./db-read";
-import DBDelete from "./db-delete";
-import { Login, Register } from "./auth";
+import DBCreate from "./components/db-create";
+import MovieLists from "./components/MovieLists";
+import DBUpdate from "./components/db-update";
+import DBRead from "./components/db-read";
+import DBDelete from "./components/db-delete";
+import { Login, Register } from "./components/auth";
 import "./css/navlink.css";
 
 export default function MovieNavigation() {
@@ -41,7 +41,7 @@ export default function MovieNavigation() {
             <nav className="nav">
                 {(role === 'null') && (
                     <>
-                        <div style={{ paddingBottom: '10%', textAlign: 'left' }}>
+                        <div style={{ paddingLeft:'5px' }}>
                             <NavLink to="/" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
                                 Movie
                             </NavLink>&nbsp;
@@ -59,7 +59,7 @@ export default function MovieNavigation() {
 
                 {(role === 'MANAGER' || role === 'TEAMLEADER' || role === 'FLOORSTAFF') && (
                     <>
-                        <div style={{ paddingBottom: '10%', textAlign: 'left' }}>
+                        <div style={{ paddingLeft:'5px' }}>
                             <NavLink to="/" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
                                 Movie
                             </NavLink>&nbsp;
