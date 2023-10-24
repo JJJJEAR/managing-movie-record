@@ -104,12 +104,13 @@ const Login = () => {
 }
 
 const Logout = (event) => {
+
     event.preventDefault();
     fetch('/api/db/logout')
         .then(response => response.text())
-        .then(result => {
-            window.location.href = '/';
+        .then(result => {     
             alert('ออกจากระบบแล้ว');
+            window.location.href = '/';
         })
         .catch(err => alert('Logout failed:', err));
 };
