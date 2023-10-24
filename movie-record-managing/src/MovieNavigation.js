@@ -5,7 +5,7 @@ import MovieLists from "./MovieLists";
 import DBUpdate from "./db-update";
 import DBRead from "./db-read";
 import DBDelete from "./db-delete";
-import { Login, Register, Logout } from "./auth";
+import { Login, Register } from "./auth";
 import "./css/navlink.css";
 
 export default function MovieNavigation() {
@@ -23,60 +23,70 @@ export default function MovieNavigation() {
         fetchUserRole();
     }, []);
 
-    
+    const onClickLogout = (event) => {
 
+        event.preventDefault();
+        fetch('/api/db/logout')
+            .then(response => response.text())
+            .then(result => {
+                alert('ออกจากระบบแล้ว');
+                window.location.href = '/';
+                setRole('null');
+            })
+            .catch(err => alert(err));
+    };
 
     return (
         <BrowserRouter>
             <nav className="nav">
-                <NavLink to="/" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                    Movie
-                </NavLink>&nbsp;
-                {(role === 'MANAGER' || role === 'TEAMLEADER' || role === 'FLOORSTAFF') && (
+                {(role === 'null') && (
                     <>
-                        <NavLink to="/Create" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                            Create
-                        </NavLink>&nbsp;
-                        <NavLink to="/Read" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                            Read
-                        </NavLink>&nbsp;
-                        <NavLink to="/Update" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                            Update
-                        </NavLink>&nbsp;
-                        {role === 'MANAGER' && (
-                            <NavLink to="/Delete" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                                Delete
+                        <div style={{ paddingBottom: '10%', textAlign: 'left' }}>
+                            <NavLink to="/" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                                Movie
+                            </NavLink>&nbsp;
+                        </div>
+                        <div style={{paddingTop:'750px'}}>
+                            <NavLink to="/login" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                                Login
                             </NavLink>
-                        )}&nbsp;
-
+                            <NavLink to="/Register" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                                Register
+                            </NavLink>&nbsp;
+                        </div>
                     </>
                 )}
-                {/* <div style={{ paddingBottom: '10%', bottom: '2%', textAlign: 'left' }}>
-                    <NavLink to="/login" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                        Login
-                    </NavLink>
-                    <NavLink to="/Register" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                        Register
-                    </NavLink>&nbsp;
-                </div> */}
-                {(role === null) && (
-                    <div style={{ paddingBottom: '10%', bottom: '2%', textAlign: 'left' }}>
-                        <NavLink to="/login" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                            Login
-                        </NavLink>
-                        <NavLink to="/Register" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                            Register
-                        </NavLink>&nbsp;
-                    </div>
-                )}
 
+                {(role === 'MANAGER' || role === 'TEAMLEADER' || role === 'FLOORSTAFF') && (
+                    <>
+                        <div style={{ paddingBottom: '10%', textAlign: 'left' }}>
+                            <NavLink to="/" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                                Movie
+                            </NavLink>&nbsp;
+                            <NavLink to="/Create" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                                Create
+                            </NavLink>&nbsp;
+                            <NavLink to="/Read" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                                Read
+                            </NavLink>&nbsp;
+                            <NavLink to="/Update" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                                Update
+                            </NavLink>&nbsp;
+                            {role === 'MANAGER' && (
+                                <NavLink to="/Delete" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                                    Delete
+                                </NavLink>
+                            )}&nbsp;
+                        </div>
+                    </>
+                )}
             </nav>
 
             {(role === 'MANAGER' || role === 'TEAMLEADER' || role === 'FLOORSTAFF') && (
                 <div style={{ marginTop: 'auto' }}>
                     <NavLink to="/logout" className={({ isActive }) => isActive ? "active_menu" : "menu"}
-                        style={{ display: role ? 'flex' : 'none', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '8%' }}>
-                        <button style={{ backgroundColor: 'red', padding: '10px 20px' }} onClick={(event) => Logout(event)}>Logout</button>
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '8%' }}>
+                        <button style={{ backgroundColor: 'red', padding: '10px 20px' }} onClick={onClickLogout}>Logout</button>
                     </NavLink>
                 </div>
             )}
@@ -97,7 +107,6 @@ export default function MovieNavigation() {
                 )}
                 <Route path="/login" element={<Login />} />
                 <Route path="/Register" element={<Register />} />
-                <Route path="/logout" element={<Logout />} />
             </Routes>
 
         </BrowserRouter>
