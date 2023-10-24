@@ -23,51 +23,77 @@ export default function MovieNavigation() {
         fetchUserRole();
     }, []);
 
+    
+
+
     return (
         <BrowserRouter>
             <nav className="nav">
                 <NavLink to="/" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
                     Movie
                 </NavLink>&nbsp;
-                <NavLink to="/Create" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                    Create
-                </NavLink>&nbsp;
-                <NavLink to="/Read" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                    Read
-                </NavLink>&nbsp;
-                <NavLink to="/Update" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                    Update
-                </NavLink>&nbsp;
-                {role === 'MANAGER' && (
-                    <NavLink to="/Delete" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                        Delete
+                {(role === 'MANAGER' || role === 'TEAMLEADER' || role === 'FLOORSTAFF') && (
+                    <>
+                        <NavLink to="/Create" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                            Create
+                        </NavLink>&nbsp;
+                        <NavLink to="/Read" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                            Read
+                        </NavLink>&nbsp;
+                        <NavLink to="/Update" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                            Update
+                        </NavLink>&nbsp;
+                        {role === 'MANAGER' && (
+                            <NavLink to="/Delete" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                                Delete
+                            </NavLink>
+                        )}&nbsp;
+
+                    </>
+                )}
+                {/* <div style={{ paddingBottom: '10%', bottom: '2%', textAlign: 'left' }}>
+                    <NavLink to="/login" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                        Login
                     </NavLink>
-                )}&nbsp;
-                <NavLink to="/login" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                    Login
-                </NavLink>
-                <NavLink to="/Register" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
-                    Register
-                </NavLink>&nbsp;
+                    <NavLink to="/Register" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                        Register
+                    </NavLink>&nbsp;
+                </div> */}
+                {(role === null) && (
+                    <div style={{ paddingBottom: '10%', bottom: '2%', textAlign: 'left' }}>
+                        <NavLink to="/login" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                            Login
+                        </NavLink>
+                        <NavLink to="/Register" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
+                            Register
+                        </NavLink>&nbsp;
+                    </div>
+                )}
+
             </nav>
-            {(role === 'MANAGER' || role === 'TEAMLEADER' || role === 'FLOORSTAFF' ) && (
+
+            {(role === 'MANAGER' || role === 'TEAMLEADER' || role === 'FLOORSTAFF') && (
                 <div style={{ marginTop: 'auto' }}>
-                    <NavLink to="/logout"  className={({ isActive }) => isActive ? "active_menu" : "menu"}
-                    style={{ display: role ? 'flex' : 'none', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '8%' }}>
+                    <NavLink to="/logout" className={({ isActive }) => isActive ? "active_menu" : "menu"}
+                        style={{ display: role ? 'flex' : 'none', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '8%' }}>
                         <button style={{ backgroundColor: 'red', padding: '10px 20px' }} onClick={(event) => Logout(event)}>Logout</button>
                     </NavLink>
                 </div>
-            )}&nbsp;
-            
+            )}
+
             <Routes style={{ margin: "20px" }}>
                 <Route path="/" element={<MovieLists />} />
                 <Route path="/Movie" element={<MovieLists />} />
                 <Route path="*" element={<Navigate to="/" />} />
-                <Route path="/Create" element={<DBCreate />} />
-                <Route path="/Read" element={<DBRead />} />
-                <Route path="/Update" element={<DBUpdate />} />
-                {role === 'MANAGER' && (
-                    <Route path="/Delete" element={<DBDelete />} />
+                {(role === 'MANAGER' || role === 'TEAMLEADER' || role === 'FLOORSTAFF') && (
+                    <>
+                        <Route path="/Create" element={<DBCreate />} />
+                        <Route path="/Read" element={<DBRead />} />
+                        <Route path="/Update" element={<DBUpdate />} />
+                        {role === 'MANAGER' && (
+                            <Route path="/Delete" element={<DBDelete />} />
+                        )}
+                    </>
                 )}
                 <Route path="/login" element={<Login />} />
                 <Route path="/Register" element={<Register />} />
