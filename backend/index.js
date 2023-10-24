@@ -101,12 +101,12 @@ app.get('/api/db/getUserRole', (req, res) => {
 //DatabaseMovie
 app.post('/api/db/create', async (req, res) => {
   try {
-    const { name, year, rate } = req.body;
+    const { name, year, Rate } = req.body;
     console.log(JSON.stringify(req.body))
     const newMovie = new Movie({
-      movie_title: name,
-      YearRL: year,
-      Rate: rate,
+      movie_title:name,
+      YearRL:year,
+      Rate 
     });
 
     await newMovie.save()
@@ -128,7 +128,7 @@ app.post('/api/db/update', (request, response) => {
   let data = {
     movie_title: form.name || '',
     YearRL: form.year || 0,
-    Rate: form.rate || ''
+    Rate: form.rating 
 
   };
 

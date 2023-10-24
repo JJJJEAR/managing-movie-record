@@ -6,7 +6,7 @@ export default function DBUpdate() {
     const form = React.useRef()
     const name = React.useRef()
     const year = React.useRef()
-    const rate = React.useRef()
+    const Rate = React.useRef()
 
     React.useEffect(() => {
         fetch('/api/db/read')
@@ -51,7 +51,7 @@ export default function DBUpdate() {
                         <td><button>update</button></td>
                         <td><input type="text" name="name" ref={name} required /></td>
                         <td><input type="number" name="year" ref={year} required /></td>
-                        <td><input type="text" name="rate" ref={rate} required /></td>
+                        <td><input type="text" name="Rate" ref={Rate} required /></td>
                     </tr>
                 </tbody>   
             </table>
@@ -91,7 +91,7 @@ export default function DBUpdate() {
     const onClickRadio = (doc) => {
         name.current.value = doc.name
         year.current.value = doc.year
-        rate.current.value = doc.rate
+        Rate.current.value = doc.Rate
     }
 
     return (
