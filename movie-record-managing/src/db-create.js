@@ -42,8 +42,7 @@ export default function DBCreate() {
 					<select
             			value={Rate}
             			onChange={(e) => setRate(e.target.value)}
-            			required
-          			>
+            			required >
 						{rates.map((r) => (
                     		<option key={r} value={r} >
                         		{r}

@@ -19,7 +19,7 @@ export default function Movie() {
     <div className="container">
       <h1 className="heading">Movies List</h1>
       <div className="movieBoxes">
-        {movies.map((movie, index) => (
+        {movies.map((movie) => (
           <div key={movie._id} className="movieBox">
             <div className="topBar">
               <span className="movieName">{movie.movie_title}</span>

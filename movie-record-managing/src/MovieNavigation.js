@@ -5,8 +5,8 @@ import MovieLists from "./MovieLists";
 import DBUpdate from "./db-update";
 import DBRead from "./db-read";
 import DBDelete from "./db-delete";
-import "./css/navlink.css";
 import { Login, Register, Logout } from "./auth";
+import "./css/navlink.css";
 
 export default function MovieNavigation() {
 

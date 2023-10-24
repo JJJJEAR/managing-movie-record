@@ -1,9 +1,9 @@
-import Home from "./Home";
+import MovieNavigation from "./MovieNavigation";
 
 function App() {
   return (
     <>
-    <Home/>
+    <MovieNavigation/>
     </>
   );
 }
