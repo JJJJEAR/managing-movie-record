@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(flash())
 
 app.use(session({
-  secret: 'Movie-Test', 
+  secret: 'Movie-Test',
   resave: false,
   saveUninitialized: true,
 }));
@@ -36,7 +36,7 @@ app.post('/api/db/register', async (req, res) => {
     });
 
     await newUser.save();
-    res.json({ success: true, message: 'User registered successfully',redirectTo: '/login' });
+    res.json({ success: true, message: 'User registered successfully', redirectTo: '/login' });
   } catch (error) {
     console.error('Error registering user:', error);
     res.status(500).json({ success: false, error: 'Internal Server Error' });
@@ -72,30 +72,30 @@ app.get('/api/db/logout', (req, res) => {
     if (err) {
       console.error('Error logging out:', err);
     } else {
-      res.json({ signedIn:false , massage: 'Logout successful' });
+      res.json({ signedIn: false, massage: 'Logout successful' });
     }
   });
 });
 
 app.get('/api/db/getUserRole', (req, res) => {
-    const userId = req.session.userId;
+  const userId = req.session.userId;
 
-    if (!userId) {
-      return res.status(401).json({ role: 'null' }); 
-    }
+  if (!userId) {
+    return res.status(401).json({ role: 'null' });
+  }
 
-    User.findById(userId)
-      .then(user => {
-        if (!user) {
-          res.status(404).json({ role: 'null' }); 
-        } else {
-          res.json({ role: user.role }); 
-        }
-      })
-      .catch(err => {
-        console.error('Error fetching user role:', err);
-        res.status(500).json({ role: 'null' }); 
-      });
+  User.findById(userId)
+    .then(user => {
+      if (!user) {
+        res.status(404).json({ role: 'null' });
+      } else {
+        res.json({ role: user.role });
+      }
+    })
+    .catch(err => {
+      console.error('Error fetching user role:', err);
+      res.status(500).json({ role: 'null' });
+    });
 });
 
 //DatabaseMovie
@@ -104,9 +104,9 @@ app.post('/api/db/create', async (req, res) => {
     const { name, year, Rate } = req.body;
     console.log(JSON.stringify(req.body))
     const newMovie = new Movie({
-      movie_title:name,
-      YearRL:year,
-      Rate 
+      movie_title: name,
+      YearRL: year,
+      Rate
     });
 
     await newMovie.save()
@@ -128,7 +128,7 @@ app.post('/api/db/update', (request, response) => {
   let data = {
     movie_title: form.name || '',
     YearRL: form.year || 0,
-    Rate: form.rating 
+    Rate: form.rating
 
   };
 
