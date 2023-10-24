@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(flash())
 
 app.use(session({
-  secret: 'Movie-Test', // ค่านี้ควรจะเปลี่ยนให้เป็นค่าที่ปลอดภัย
+  secret: 'Movie-Test', 
   resave: false,
   saveUninitialized: true,
 }));
@@ -36,7 +36,7 @@ app.post('/api/db/register', async (req, res) => {
     });
 
     await newUser.save();
-    res.json({ success: true, message: 'User registered successfully' });
+    res.json({ success: true, message: 'User registered successfully',redirectTo: '/login' });
   } catch (error) {
     console.error('Error registering user:', error);
     res.status(500).json({ success: false, error: 'Internal Server Error' });
@@ -54,16 +54,16 @@ app.post('/api/db/login', async (req, res) => {
       const match = await bcrypt.compare(password, user.password);
       if (match) {
         req.session.userId = user._id;
-        res.json({ success: true, message: 'Login successful' });
+        res.json({ signedIn: true, message: 'Login successful', redirectTo: '/' });
       } else {
-        res.status(401).json({ success: false, error: 'Invalid password' });
+        res.status(401).json({ signedIn: false, error: 'Invalid password' });
       }
     } else {
-      res.status(404).json({ success: false, error: 'User not found' });
+      res.status(404).json({ signedIn: false, error: 'User not found' });
     }
   } catch (error) {
     console.error('Error logging in:', error);
-    res.status(500).json({ success: false, error: 'Internal Server Error' });
+    res.status(500).json({ signedIn: false, error: 'Internal Server Error' });
   }
 });
 
@@ -71,11 +71,31 @@ app.get('/api/db/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error('Error logging out:', err);
-      res.status(500).json({ success: false, error: 'Internal Server Error', redirectTo: '/' });
     } else {
-      res.json({ success: true, message: 'Logout successful' });
+      res.json({ signedIn:false , massage: 'Logout successful' });
     }
   });
+});
+
+app.get('/api/db/getUserRole', (req, res) => {
+    const userId = req.session.userId;
+
+    if (!userId) {
+      return res.status(401).json({ role: 'User' }); 
+    }
+
+    User.findById(userId)
+      .then(user => {
+        if (!user) {
+          res.status(404).json({ role: 'User' }); 
+        } else {
+          res.json({ role: user.role }); 
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching user role:', err);
+        res.status(500).json({ role: 'User' }); 
+      });
 });
 
 //DatabaseMovie

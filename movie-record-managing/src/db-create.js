@@ -25,20 +25,26 @@ export default function DBCreate() {
 	}
 
     return (
-    <form id="form-create" onSubmit={onSubmitForm} ref={form} >
-		<label>Movie Title</label>
-		<input type="text" name="name" required/><br/>
-		<label>Year Release</label>
-		<input type="Number" name="year" required/>
-		<br/><br/>
-		<label>Rate</label>
-		<input type="text" name="rate" required/>
-		<br/><br/>
+	<div style={{paddingTop:'20px'}} >	
+	<form id="form-create" onSubmit={onSubmitForm} ref={form} >
+		<div > 
+			<label>Movie Title</label>
+			<input type="text" name="name" required/>
+		</div><br/>
+		<div>
+			<label>Year Release</label>
+			<input type="Number" name="year" required/>
+		</div><br/>
+		<div>
+			<label>Rate</label>
+			<input type="text" name="rate" required/>
+		</div><br/><br/>
 		<div> 
             <button style={{backgroundColor:'blue',float:'left'}}><a href="/db" style={{textDecoration:'none',color:'white'}}>หน้าหลัก</a></button>
 			<button style={{float:'right'}}>ตกลง</button>
         </div>
 		<br/><br/>
 	</form>
+	</div>
     )
 }

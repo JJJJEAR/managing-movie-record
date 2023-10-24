@@ -1,38 +1,39 @@
 import React from 'react';
 import MovieNavigation from "./MovieNavigation";
-import MovieLogin from "./MovieLogin";
+import { Login } from './LoginRegister';
 
 export default function Home() {
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
-    const handleLogin = async () => {
+    const handleLogin = () => {
         setIsLoggedIn(true);
-        window.location.href = '/MovieLogin';
     };
 
-    const onClickLink = async (event) => {
+    const handleLogout = async (event) => {
         event.preventDefault();
-        try {
-            await fetch('/api/db/logout');
-            setIsLoggedIn(false);
-            window.location.href = '/MovieNavigation';
-        } catch (err) {
-            console.error('Logout failed:', err);
-            alert('Logout failed');
-        }
+        fetch('/api/db/logout')
+            .then(response => response.text())
+            .then(result => window.location.href= '/')
+            .catch(err => alert('Logout failed:', err));
+            
+        setIsLoggedIn(false);
+        alert('ออกจากระบบแล้ว');
     }
 
     return (
         <div>
-            {isLoggedIn ? (
+            {/* {isLoggedIn ? (
                 <div>
-                    <MovieLogin />
-                    <button onClick={(e) => onClickLink(e)} style={{ float: 'right' }} >Logout</button>
+                    <MovieNavigation />
+                    <button onClick={handleLogout} style={{ float: 'right' }} >Logout</button>
                 </div>
             ) : (
-                <div><MovieNavigation />
-                <button onClick={(e) => onClickLink(e)} style={{ float: 'right' }} >Logout</button></div>
-            )}
+                <div>
+                    <Login onClick={handleLogin} />
+                </div>
+            )} */}
+            <MovieNavigation />
         </div>
     );
+
 };
