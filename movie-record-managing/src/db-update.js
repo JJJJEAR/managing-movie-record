@@ -1,5 +1,5 @@
 import React from 'react'
-import './table-style.css'
+import './css/table-style.css'
 
 export default function DBUpdate() {
     let [data, setData] = React.useState('')
@@ -50,7 +50,7 @@ export default function DBUpdate() {
                 <tr style={{ backgroundColor: 'lightgray' }}>
                         <td><button>update</button></td>
                         <td><input type="text" name="name" ref={name} required /></td>
-                        <td><input type="number" name="year" ref={year} required /></td>
+                        <td><input type="number" name="year" ref={year} min="1900" max="2100" required /></td>
                         <td><input type="text" name="Rate" ref={Rate} required /></td>
                     </tr>
                 </tbody>   

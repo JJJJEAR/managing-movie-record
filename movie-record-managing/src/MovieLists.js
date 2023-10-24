@@ -1,5 +1,5 @@
 import React from 'react';
-import './MovieStyles.css';
+import './css/MovieStyles.css';
 
 export default function Movie() {
   const [movies, setMovies] = React.useState([]);

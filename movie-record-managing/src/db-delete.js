@@ -1,5 +1,5 @@
 import React from 'react'
-import './table-style.css'
+import './css/table-style.css'
 
 export default function DBDelete() {
     let [data, setData] = React.useState('')

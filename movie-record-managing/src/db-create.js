@@ -1,5 +1,5 @@
 import React from 'react'
-import './form-style.css'
+import './css/form-style.css'
 
 export default function DBCreate() {
 	const form = React.useRef()
@@ -35,7 +35,7 @@ export default function DBCreate() {
 				</div><br />
 				<div>
 					<label>Year Release</label>
-					<input type="Number" name="year" required />
+					<input type="Number" name="year" min="1900" max="2100" required />
 				</div><br />
 				<div>
 					<label>Rating</label>

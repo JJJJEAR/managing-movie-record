@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Loginstyle.css"
+import "./css/Loginstyle.css"
 
 const Register = () => {
     const form = React.useRef()
@@ -103,4 +103,14 @@ const Login = () => {
     );
 }
 
-export { Login, Register };
+const Logout = (event) => {
+    event.preventDefault();
+    fetch('/api/db/logout')
+        .then(response => response.text())
+        .then(result => {
+            window.location.href = '/';
+            alert('ออกจากระบบแล้ว');
+        })
+        .catch(err => alert('Logout failed:', err));
+};
+export { Login, Register , Logout };
