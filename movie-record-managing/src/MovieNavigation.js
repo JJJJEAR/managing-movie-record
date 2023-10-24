@@ -36,10 +36,19 @@ export default function MovieNavigation() {
             .catch(err => alert(err));
     };
 
+    // const handleRoleClick = () => {
+    //     fetch('/api/db/getUserRole')
+    //       .then(response => response.json())
+    //       .then(result => {
+    //         alert(role);
+    //       })
+    //       .catch(err => alert(err));
+    //   };
+
     return (
         <BrowserRouter>
             <nav className="nav">
-                {(role === 'null') && (
+                {(role === 'null' || role === '') && (
                     <>
                         <div style={{ paddingLeft:'5px' }}>
                             <NavLink to="/" className={({ isActive }) => isActive ? "active_menu" : "menu"} >
