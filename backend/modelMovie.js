@@ -8,7 +8,7 @@ mongoose.connect('mongodb://0.0.0.0:27017/db1', {
 let movieSchema = new mongoose.Schema({
   movie_title: String,
   YearRL: Number,
-  Rate: String,
+  Rate: String
 })
 
 movieSchema.plugin(paginate)	
